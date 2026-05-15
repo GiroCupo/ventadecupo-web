@@ -636,6 +636,38 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
   </div>
 </section>
 
+<!-- FORM EMAIL -->
+<section style="background:#F1F0EE;border-top:1px solid rgba(15,23,42,0.1);padding:64px 20px;">
+  <div style="max-width:460px;margin:0 auto;text-align:center;">
+    <p style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#B45309;margin-bottom:10px;">Cotización por email</p>
+    <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#0F172A;margin-bottom:10px;">¿Prefieres que te contactemos?</h2>
+    <p style="font-size:15px;color:#64748B;font-weight:300;margin-bottom:28px;line-height:1.6;">Déjanos tus datos y te respondemos en menos de 15 minutos.</p>
+    <div id="vdc-w">
+      <form id="vdc-f" action="https://api.web3forms.com/submit" method="POST" style="text-align:left;">
+        <input type="hidden" name="access_key" value="82fa11e9-11dc-46c4-947d-2195d4c94229">
+        <input type="hidden" name="subject" value="Nueva cotización — ventadecupo.cl">
+        <input type="hidden" name="from_name" value="VentaDeCupo Web">
+        <input type="hidden" name="redirect" value="false">
+        <div style="margin-bottom:12px;"><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#64748B;margin-bottom:5px;">Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" style="width:100%;background:#fff;border:1.5px solid #E2E8F0;border-radius:6px;color:#0F172A;font-size:14px;padding:11px 14px;outline:none;box-sizing:border-box;font-family:inherit;"></div>
+        <div style="margin-bottom:12px;"><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#64748B;margin-bottom:5px;">Teléfono</label><input type="tel" name="telefono" placeholder="+56 9 XXXX XXXX" style="width:100%;background:#fff;border:1.5px solid #E2E8F0;border-radius:6px;color:#0F172A;font-size:14px;padding:11px 14px;outline:none;box-sizing:border-box;font-family:inherit;"></div>
+        <div style="margin-bottom:12px;"><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#64748B;margin-bottom:5px;">Email</label><input type="email" name="email" placeholder="tu@email.com" style="width:100%;background:#fff;border:1.5px solid #E2E8F0;border-radius:6px;color:#0F172A;font-size:14px;padding:11px 14px;outline:none;box-sizing:border-box;font-family:inherit;"></div>
+        <div style="margin-bottom:20px;"><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#64748B;margin-bottom:5px;">Monto aproximado (USD)</label><input type="number" name="monto_usd" placeholder="Ej: 2000" min="300" style="width:100%;background:#fff;border:1.5px solid #E2E8F0;border-radius:6px;color:#0F172A;font-size:14px;padding:11px 14px;outline:none;box-sizing:border-box;font-family:inherit;"></div>
+        <button type="submit" id="vdc-btn" style="width:100%;background:#0F172A;color:#D97706;border:none;border-radius:6px;font-family:inherit;font-size:14px;font-weight:600;padding:14px;cursor:pointer;">Enviar consulta</button>
+      </form>
+      <p style="text-align:center;font-size:11px;color:#94A3B8;margin-top:10px;">🔒 Sin claves bancarias · Sin compromiso</p>
+    </div>
+    <div id="vdc-ok" style="display:none;padding:24px 0;">
+      <div style="font-size:40px;margin-bottom:12px;">✅</div>
+      <p style="color:#0F172A;font-size:18px;font-weight:600;margin-bottom:8px;">¡Mensaje recibido!</p>
+      <p style="color:#64748B;font-size:14px;margin-bottom:20px;">Te respondemos en menos de 15 minutos en horario hábil.</p>
+      <a href="https://wa.me/56963026000?text=Hola%2C%20acabo%20de%20enviar%20mi%20consulta." rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#0b3320;font-size:14px;font-weight:700;padding:12px 24px;border-radius:8px;text-decoration:none;">También por WhatsApp</a>
+    </div>
+  </div>
+</section>
+<script>
+document.getElementById('vdc-f').addEventListener('submit',async function(e){e.preventDefault();const btn=document.getElementById('vdc-btn');btn.textContent='Enviando...';btn.disabled=true;try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(this)});const d=await r.json();if(d.success){document.getElementById('vdc-w').style.display='none';document.getElementById('vdc-ok').style.display='block';}else{btn.textContent='Enviar consulta';btn.disabled=false;}}catch(err){btn.textContent='Enviar consulta';btn.disabled=false;}});
+</script>
+
 <!-- CTA FINAL -->
 <section class="cta-final">
   <h2>¿Listo para cotizar la venta<br>de <em>tu cupo?</em></h2>
