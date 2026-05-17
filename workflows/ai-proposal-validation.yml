@@ -1,0 +1,9 @@
+name: AI Proposal Validation
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  validate:
+    uses: GiroCupo/.github/.github/workflows/ai-validation-reusable.yml@main
+    with:
+      tier: 2
