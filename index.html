@@ -644,11 +644,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
     <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#0F172A;margin-bottom:10px;">¿Prefieres que te contactemos?</h2>
     <p style="font-size:15px;color:#64748B;font-weight:300;margin-bottom:28px;line-height:1.6;">Déjanos tus datos y te respondemos en menos de 15 minutos.</p>
     <div id="vdc-w">
-      <form id="vdc-f" action="https://api.web3forms.com/submit" method="POST" style="text-align:left;">
-        <input type="hidden" name="access_key" value="82fa11e9-11dc-46c4-947d-2195d4c94229">
-        <input type="hidden" name="subject" value="Nueva cotización — ventadecupo.cl">
-        <input type="hidden" name="from_name" value="VentaDeCupo Web">
-        <input type="hidden" name="redirect" value="false">
+      <form id="vdc-f" action="https://api.girodolares.cl/lead" method="POST" style="text-align:left;">
         <div style="margin-bottom:12px;"><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#64748B;margin-bottom:5px;">Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" style="width:100%;background:#fff;border:1.5px solid #E2E8F0;border-radius:6px;color:#0F172A;font-size:14px;padding:11px 14px;outline:none;box-sizing:border-box;font-family:inherit;"></div>
         <div style="margin-bottom:12px;"><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#64748B;margin-bottom:5px;">Teléfono</label><input type="tel" name="telefono" placeholder="+56 9 XXXX XXXX" style="width:100%;background:#fff;border:1.5px solid #E2E8F0;border-radius:6px;color:#0F172A;font-size:14px;padding:11px 14px;outline:none;box-sizing:border-box;font-family:inherit;"></div>
         <div style="margin-bottom:12px;"><label style="display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#64748B;margin-bottom:5px;">Email</label><input type="email" name="email" placeholder="tu@email.com" style="width:100%;background:#fff;border:1.5px solid #E2E8F0;border-radius:6px;color:#0F172A;font-size:14px;padding:11px 14px;outline:none;box-sizing:border-box;font-family:inherit;"></div>
@@ -666,7 +662,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); p
   </div>
 </section>
 <script>
-document.getElementById('vdc-f').addEventListener('submit',async function(e){e.preventDefault();const btn=document.getElementById('vdc-btn');btn.textContent='Enviando...';btn.disabled=true;try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(this)});const d=await r.json();if(d.success){document.getElementById('vdc-w').style.display='none';document.getElementById('vdc-ok').style.display='block';}else{btn.textContent='Enviar consulta';btn.disabled=false;}}catch(err){btn.textContent='Enviar consulta';btn.disabled=false;}});
+document.getElementById('vdc-f').addEventListener('submit',async function(e){e.preventDefault();const btn=document.getElementById('vdc-btn');btn.textContent='Enviando...';btn.disabled=true;try{const f=this;const g=n=>{const el=f.querySelector('[name='+n+']');return el?el.value:'';};const r=await fetch('https://api.girodolares.cl/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre:g('nombre'),email:g('email'),telefono:g('telefono'),monto_usd:g('monto_usd'),sitio:'ventadecupo.cl',canal:'email'})});const d=await r.json();if(d.success){document.getElementById('vdc-w').style.display='none';document.getElementById('vdc-ok').style.display='block';}else{btn.textContent='Enviar consulta';btn.disabled=false;}}catch(err){btn.textContent='Enviar consulta';btn.disabled=false;}});
 </script>
 
 <section class="content-section" style="background:var(--paper-2);"><div class="content-inner"><div><p class="section-eyebrow">Paso previo</p><h2 class="section-h2">¿Cómo revisar tu <em>cupo internacional</em> disponible?</h2><p class="section-desc">Antes de vender tu cupo en dólares, verifica el monto disponible. Cada banco lo muestra de forma distinta:</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:20px;"><div style="background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px;"><div style="font-weight:700;color:var(--copper);font-family:var(--font-display);font-size:15px;margin-bottom:6px;">Santander</div><div style="font-size:13px;color:var(--ink-3);line-height:1.65;">App Santander → Mi Tarjeta → Cupos → Cupo Internacional. También al 600 320 3000.</div></div><div style="background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px;"><div style="font-weight:700;color:var(--copper);font-family:var(--font-display);font-size:15px;margin-bottom:6px;">BCI</div><div style="font-size:13px;color:var(--ink-3);line-height:1.65;">App BCI → Tarjetas → Detalle → Cupo disponible USD. O al 600 692 7000.</div></div><div style="background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px;"><div style="font-weight:700;color:var(--copper);font-family:var(--font-display);font-size:15px;margin-bottom:6px;">Banco de Chile</div><div style="font-size:13px;color:var(--ink-3);line-height:1.65;">App Banco de Chile → Tarjetas → Cupo internacional disponible. O al 600 637 3737.</div></div><div style="background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px;"><div style="font-weight:700;color:var(--copper);font-family:var(--font-display);font-size:15px;margin-bottom:6px;">Itaú</div><div style="font-size:13px;color:var(--ink-3);line-height:1.65;">App Itaú → Tarjetas → Cupo internacional. O en el extracto mensual o al 600 686 8000.</div></div></div></div></div></section>
@@ -730,15 +726,7 @@ function toggleFaq(btn) {
 </script>
 <script>
 function trackWA() {
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      access_key: '82fa11e9-11dc-46c4-947d-2195d4c94229',
-      subject: 'Click WhatsApp - ' + window.location.href,
-      message: 'Click WhatsApp desde: ' + window.location.href
-    })
-  }).catch(function(){});
+  (window.dataLayer=window.dataLayer||[]).push({event:'whatsapp_click',wa_location:window.location.href});
 }
 </script>
 </body>
